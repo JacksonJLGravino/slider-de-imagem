@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  max-width: 1200px;
+}
+
+img {
+  width: 300px;
+  height: 150px;
+}
+
+.img-list .img-item {
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-wrapper .swiper-pagination-bullet {
+  background: black;
+  height: 13px;
+  width: 13px;
+}
+.slider-wrapper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+.slider-wrapper .swiper-slide-button {
+  color: black;
+  transition: 0.4s;
+}
+.slider-wrapper .swiper-slide-button:hover {
+  color: gray;
+}
