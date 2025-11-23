@@ -1,29 +1,47 @@
-const swiper = new Swiper(".slider-wrapper", {
-  loop: true,
-  grabCursor: true,
-  spaceBetween: 30,
+const slider = document.querySelector(".slider");
+const slides = document.querySelectorAll(".slide");
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+const pagination = document.querySelector(".pagination");
 
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
+let index = 0;
+const total = slides.length;
 
-  // Navigation arrows
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement("div");
+  dot.classList.add("dot");
+  if (i === 0) {
+    dot.classList.add("active");
+  }
+  dot.addEventListener("click", () => goToSlide(i));
+  pagination.appendChild(dot);
+}
 
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    610: {
-      slidesPerView: 2,
-    },
-    910: {
-      slidesPerView: 3,
-    },
-  },
+const dots = document.querySelectorAll(".dot");
+
+const updateSlider = () => {
+  slider.style.transform = `translateX(${-index * 100}%)`;
+
+  dots.forEach((dot) => dot.classList.remove("active"));
+  dots[index].classList.add("active");
+};
+
+next.addEventListener("click", () => {
+  index = (index + 1) % total;
+  updateSlider();
 });
+
+prev.addEventListener("click", () => {
+  index = (index - 1 + total) % total;
+  updateSlider();
+});
+
+const goToSlide = (i) => {
+  index = i;
+  updateSlider();
+};
+
+setInterval(() => {
+  index = (index + 1) % total;
+  updateSlider();
+}, 3500);
